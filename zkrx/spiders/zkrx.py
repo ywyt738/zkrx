@@ -21,13 +21,13 @@ class zkrx(scrapy.Spider):
                 item = ZkrxItem()
                 item['name'] = table.xpath("tr[position()>2]/td[3]/text()").extract()
                 item['sn'] = table.xpath("tr[position()>2]/td[2]/text()").extract()
-                item['cat'] = ['推荐']*len(table.xpath("tr/td[3]/text()"))
-                item['school'] = [self.school_name[self.links.index(url)]]*len(table.xpath("tr/td[3]/text()"))
+                item['cat'] = ['推荐']*len(table.xpath("tr[position()>2]/td[3]"))
+                item['school'] = [self.school_name[self.links.index(url)]]*len(table.xpath("tr[position()>2]/td[3]"))
                 yield item
             else:
                 item = ZkrxItem()
-                item['name'] = table.xpath("tr/td[3]/text()").extract()
-                item['sn'] = table.xpath("tr/td[2]/text()").extract()
-                item['cat'] = ['自荐']*len(table.xpath("tr/td[3]/text()"))
-                item['school'] = [self.school_name[self.links.index(url)]]*len(table.xpath("tr/td[3]/text()"))
+                item['name'] = table.xpath("tr[position()>2]/td[3]/text()").extract()
+                item['sn'] = table.xpath("tr[position()>2]/td[2]/text()").extract()
+                item['cat'] = ['自荐']*len(table.xpath("tr[position()>2]/td[3]"))
+                item['school'] = [self.school_name[self.links.index(url)]]*len(table.xpath("tr[position()>2]/td[3]"))
                 yield item
